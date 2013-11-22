@@ -1,0 +1,86 @@
+/* Pagination - in Article and Reprot Profiles */
+.pagination {
+            font-size: 80%;
+            font-weight:bold;
+        }
+        
+.pagination a {
+    text-decoration: none;
+	border: #fff;
+	color: #336699;
+}
+
+.pagination a, .pagination span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.5em;
+    margin-right: 5px;
+	margin-bottom: 5px;
+	min-width:1em;
+	text-align:center;
+}
+
+.pagination .current {
+    background: #336699;
+    color: #fff;
+	border: #fff;
+}
+
+.pagination .current.prev, .pagination .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fff;
+}
+
+
+
+
+/* Pagination - additional styles */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+#Searchresult {
+	margin-top:15px;
+	margin-bottom:15px;
+	border:solid 1px #eef;
+	padding:5px;
+	background:#eef;
+  	width:40%;
+}
+
+#Searchresult p { margin-bottom:1.4em;}
+
+#Searchresult dt {
+    font-weight:bold;
+}
+
+#Searchresult dd {
+    margin-left:25px;
+}
+
+#ImageContainer {
+    height:125px;
+    width:200px;
+    border:solid 1px #ccc;
+    margin-bottom:10px;
+}
+
+#ImageContainer img {display:none;}
+
+#footer {
+	margin-top:20px;
+	font-size:60%;
+	color:#15B;
+}
+
+label {
+	float:left;
+	width:250px;
+	display:block;
+}
+
+form p {
+	clear:both;
+}

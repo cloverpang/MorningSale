@@ -1,0 +1,74 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+
+.username a:link
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+.username a:visited
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+.actionlink a:link
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+.actionlink a:visited
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.pageadmin
+{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .65em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+
+}
+
+
+#mainadmin
+{
+    padding: 10px 10px 10px 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */  
+}
+
+
+/* TABLE
+----------------------------------------------------------*/
+
+div.mvcMembership-allUsers table 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+}
+
+div.mvcMembership-allUsers table td 
+{
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+div.mvcMembership-allUsers table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+

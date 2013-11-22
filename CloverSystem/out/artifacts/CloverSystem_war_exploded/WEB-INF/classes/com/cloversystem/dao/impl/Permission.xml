@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<permissionRoot>
+    <module name="permission">
+        <permission id="/permission/management.action" roles="Admin">
+            <packageName>permission</packageName>
+            <action>management</action>
+            <name>权限管理</name>
+        </permission>
+        <permission id="/permission/addPermission.action" roles="Admin">
+            <packageName>permission</packageName>
+            <action>addPermission</action>
+            <name>添加权限</name>
+        </permission>
+        <permission id="/permission/deletePermission.action" roles="Admin">
+            <packageName>permission</packageName>
+            <action>deletePermission</action>
+            <name>删除某个权限</name>
+        </permission>
+    </module>
+    <module name="store">
+        <permission id="/store/manageOurCompanyStores.action" roles="业务员,销售总监,Admin">
+            <packageName>store</packageName>
+            <action>manageOurCompanyStores</action>
+            <name>管理本公司门店</name>
+        </permission>
+        <permission id="/store/addStore.action" roles="销售总监,Admin">
+            <packageName>store</packageName>
+            <action>addStore</action>
+            <name>添加门店</name>
+        </permission>
+        <permission id="/store/deleteStore.action" roles="销售总监,Admin">
+            <packageName>store</packageName>
+            <action>deleteStore</action>
+            <name>删除门店</name>
+        </permission>
+        <permission id="/store/updateStore.action" roles="销售总监,Admin">
+            <packageName>store</packageName>
+            <action>updateStore</action>
+            <name>更新门店</name>
+        </permission>
+    </module>
+    <module name="report">
+        <permission id="/report/addDailySaleReport.action" roles="店员,业务员,销售总监,Admin">
+            <packageName>report</packageName>
+            <action>addDailySaleReport</action>
+            <name>发日销售报告</name>
+        </permission>
+        <permission id="/report/submitTodaySaleReport.action" roles="店员,业务员,销售总监,Admin">
+            <packageName>report</packageName>
+            <action>submitTodaySaleReport</action>
+            <name>提交日销售报告</name>
+        </permission>
+        <permission id="/report/viewYesterdayReport.action" roles="业务员,销售总监,Admin">
+            <packageName>report</packageName>
+            <action>viewYesterdayReport</action>
+            <name>查看昨日报告</name>
+        </permission>
+        <permission id="/report/viewSomedayReport.action" roles="业务员,销售总监,Admin">
+            <packageName>report</packageName>
+            <action>viewSomedayReport</action>
+            <name>查看阶段报告</name>
+        </permission>
+        <permission id="/report/viewOurStoresReport.action" roles="销售总监,Admin">
+            <packageName>report</packageName>
+            <action>viewOurStoresReport</action>
+            <name>报告检索</name>
+        </permission>
+        <permission id="/report/manageOurCompanyReport.action" roles="销售总监,Admin">
+            <packageName>report</packageName>
+            <action>manageOurCompanyReport</action>
+            <name>报告信息管理</name>
+        </permission>
+        <permission id="/report/deleteDailyReport.action" roles="销售总监,Admin">
+            <packageName>report</packageName>
+            <action>deleteDailyReport</action>
+            <name>删除日报告</name>
+        </permission>
+        <permission id="/report/insertDailyReport.action" roles="业务员,销售总监,Admin">
+            <packageName>report</packageName>
+            <action>insertDailyReport</action>
+            <name>插入日报告</name>
+        </permission>
+    </module>
+    <module name="menu">
+        <permission id="/menu/management.action" roles="Admin">
+            <packageName>menu</packageName>
+            <action>management</action>
+            <name>菜单管理</name>
+        </permission>
+        <permission id="/menu/addMenu.action" roles="Admin">
+            <packageName>menu</packageName>
+            <action>addMenu</action>
+            <name>添加菜单</name>
+        </permission>
+        <permission id="/menu/deleteMenu.action" roles="Admin">
+            <packageName>menu</packageName>
+            <action>deleteMenu</action>
+            <name>删除某个菜单</name>
+        </permission>
+        <permission id="/menu/updateMenu.action" roles="Admin">
+            <packageName>menu</packageName>
+            <action>updateMenu</action>
+            <name>更新菜单</name>
+        </permission>
+    </module>
+    <module name="role">
+        <permission id="/role/management.action" roles="Admin">
+            <packageName>role</packageName>
+            <action>management</action>
+            <name>角色管理</name>
+        </permission>
+        <permission id="/role/addRole.action" roles="Admin">
+            <packageName>role</packageName>
+            <action>addRole</action>
+            <name>添加角色</name>
+        </permission>
+        <permission id="/role/deleteRole.action" roles="Admin">
+            <packageName>role</packageName>
+            <action>deleteRole</action>
+            <name>删除角色</name>
+        </permission>
+        <permission id="/role/editRolePermission.action" roles="Admin">
+            <packageName>role</packageName>
+            <action>editRolePermission</action>
+            <name>编辑角色权限</name>
+        </permission>
+        <permission id="/role/editRoleMenu.action" roles="Admin">
+            <packageName>role</packageName>
+            <action>editRoleMenu</action>
+            <name>编辑角色菜单</name>
+        </permission>
+    </module>
+    <module name="user">
+        <permission id="/user/addOurCompanyNewUser.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>addOurCompanyNewUser</action>
+            <name>公司添加用户</name>
+        </permission>
+        <permission id="/user/batchAddOurCompanyUsers.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>batchAddOurCompanyUsers</action>
+            <name>公司批量添加用户</name>
+        </permission>
+        <permission id="/user/addCompanyNewUser.action" roles="Admin">
+            <packageName>user</packageName>
+            <action>addCompanyNewUser</action>
+            <name>添加用户</name>
+        </permission>
+        <permission id="/user/batchAddCompanyUsers.action" roles="Admin">
+            <packageName>user</packageName>
+            <action>batchAddCompanyUsers</action>
+            <name>批量添加用户</name>
+        </permission>
+        <permission id="/user/userRemoveRole.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>userRemoveRole</action>
+            <name>移除用户角色</name>
+        </permission>
+        <permission id="/user/userAddRole.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>userAddRole</action>
+            <name>添加用户角色</name>
+        </permission>
+        <permission id="/user/deleteUser.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>deleteUser</action>
+            <name>删除用户</name>
+        </permission>
+        <permission id="/user/updateUser.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>updateUser</action>
+            <name>编辑用户</name>
+        </permission>
+        <permission id="/user/lockUser.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>lockUser</action>
+            <name>锁定用户</name>
+        </permission>
+        <permission id="/user/resetUserPassword.action" roles="销售总监,Admin">
+            <packageName>user</packageName>
+            <action>resetUserPassword</action>
+            <name>重置用户密码</name>
+        </permission>
+    </module>
+    <module name="company">
+        <permission id="/company/management.action" roles="Admin">
+            <packageName>company</packageName>
+            <action>management</action>
+            <name>客户公司管理</name>
+        </permission>
+        <permission id="/company/addCompany.action" roles="Admin">
+            <packageName>company</packageName>
+            <action>addCompany</action>
+            <name>添加新公司客户</name>
+        </permission>
+        <permission id="/company/deleteCompany.action" roles="Admin">
+            <packageName>company</packageName>
+            <action>deleteCompany</action>
+            <name>删除公司客户</name>
+        </permission>
+        <permission id="/company/lockCompany.action" roles="Admin">
+            <packageName>company</packageName>
+            <action>lockCompany</action>
+            <name>锁定公司客户</name>
+        </permission>
+        <permission id="/company/manageCompanyUsers.action" roles="Admin">
+            <packageName>company</packageName>
+            <action>manageCompanyUsers</action>
+            <name>管理公司用户</name>
+        </permission>
+        <permission id="/company/manageOurCompanyUsers.action" roles="销售总监,Admin">
+            <packageName>company</packageName>
+            <action>manageOurCompanyUsers</action>
+            <name>管理本公司用户</name>
+        </permission>
+        <permission id="/company/changeOurCompanyInfo.action" roles="销售总监,Admin">
+            <packageName>company</packageName>
+            <action>changeOurCompanyInfo</action>
+            <name>编辑本公司信息</name>
+        </permission>
+    </module>
+</permissionRoot>

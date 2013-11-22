@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<role>
+  <item id="storeSales">
+    <name>店员</name>
+    <desciption>Sale Person</desciption>
+  </item>
+  <item id="salesManager">
+    <name>业务员</name>
+    <desciption>Sales Manager</desciption>
+  </item>
+  <item id="companyManager">
+    <name>销售总监</name>
+    <desciption>Company Manager</desciption>
+  </item>
+  <item id="Admin">
+    <name>Admin</name>
+    <desciption>Admin</desciption>
+  </item>
+</role>

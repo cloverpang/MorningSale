@@ -1,0 +1,239 @@
+Create
+{
+	font-size: 1em;
+	color: #000000;
+	margin: 9px 0 0 10px;
+	display: inline;
+}
+
+#INGheader
+{
+	width: 780px;
+	background-color: #CCCCCC;
+	border-bottom: 1px solid #999999;
+	border-top: 1px solid #000000;
+	padding: 6px 0 7px 0;
+}
+#INGheader a
+{
+	color: #000000;
+	margin-left: 510px;
+}
+#INGheader h1
+{
+	
+}
+
+#INGfooter
+{
+	width: 780px;
+	height: 60px;
+	background-color: #CCCCCC;
+	border-top: 1px solid #999999;
+	float: left;
+}
+
+#left
+{
+	width: 195px;
+	float: left;
+	height: 475px;
+	padding-top: 5px;
+}
+#right
+{
+	width: 460px;
+	height: 475px;
+	padding-top: 5px;
+	float: left;
+}
+
+ul.horiz
+{
+    margin: 0;
+}
+ul.horiz li
+{
+	display: inline;
+	margin: 0 5px 0 0;
+}
+
+#right p
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.noTop
+{
+    margin-top: 0;
+}
+.noBottom
+{
+    margin-bottom: 0;
+}
+
+input.find
+{
+	width: 350px;
+}
+
+.buttons
+{
+    font-size: 1em;
+	height: 24px;
+	width: 70px;
+	background-color: #cccccc;
+	border-right: 1px solid #646464;
+	border-bottom: 1px solid #646464;
+	border-left: 1px solid #FFFFFF;
+	border-top: 1px solid #FFFFFF;
+}
+
+.findbutton
+{
+	margin-left: 30px;
+}
+
+.rightbutton
+{
+	float: right;	
+	margin-top: 0;
+}
+.leftbutton
+{
+	float: left;
+	margin-left: 314px;
+	margin-top: 0;
+}
+
+hr
+{
+	width: 460px;
+	border: none;
+	background-color: #cccccc;
+	color: #cccccc;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 0;
+	
+}
+
+.xrayrightfooter
+{
+	float: right;	
+	margin: 17px 122px 0 0;
+}
+
+.xrayleftfooter
+{
+	float: left;	
+	font-size: 1em;
+	width: 70px;
+	margin: 17px 0 0 510px;
+}
+
+.fundprofilefooter
+{
+	float: left;	
+	font-size: 1em;
+	width: 96px;
+	margin: 17px 0 0 560px;
+}
+
+.fundselectorselect
+{
+    width: 460px;
+    height: 115px;
+    font-size: 10px;
+    float: left;
+    border: 1px solid #666666;
+    margin-bottom: 10px;
+}
+.fundselector
+{
+    visibility: visible;
+    width: 20%;
+    height: 18px;
+    margin-right: 20px;
+    font-size: 10px;
+}
+
+.alert
+{
+    color: Red;
+}
+.show
+{
+    visibility: visible;
+    margin: 0 10px 0 5px;
+}
+.success
+{
+    font-weight: bold;
+    visibility: visible;
+    margin: 0 10px 0 5px;
+}
+.hide
+{
+    visibility: hidden;
+    width: 0;
+    margin: 0;
+}
+.hidden
+{
+    visibility: hidden;
+    display: none;
+}
+.unhide
+{
+    visibility: visible;
+}  
+
+/* Xray Allocate screen */
+
+   .name
+    {
+        width: 73%;
+    }
+    .allocation
+    {
+        width: 27%;
+    }
+    #pfallocTop, #pfallocBot
+    {
+        padding-left: 2px;
+    }
+    #Allocfooter
+    {
+        position: relative;
+    }
+    #btEdit
+    {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+    #btSubmit
+    {
+        position: absolute;
+        left: 455px;
+        top: 10px;
+        width: 120px;
+        font-weight: bold;
+    }
+    #btClose
+    {
+        position: absolute;
+        left: 585px;
+        top: 10px;
+    }
+    .alloc
+    {
+        background: #FFFFFF;
+        width: 50px;
+    }
+    .Xrayerror
+    {
+        background-color: red;
+    }

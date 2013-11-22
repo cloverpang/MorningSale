@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--suppress ALL -->
+<struts>
+    <!-- 配置了系列常量 -->
+	<constant name="struts.custom.i18n.resources" value="resource"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!-- 此配置为集成spring到struts -->
+    <constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.templateDir" value="template" />
+    <constant name="struts.ui.templateSuffix" value="ftl" />
+
+    <package name="default" namespace="/" extends="json-default">
+        <!-- 配置为所有package使用的拦截器 -->
+       <interceptors>
+		<!-- 配置system admin的登陆检查拦截器 -->
+		<interceptor name="adminAuth" class="com.cloversystem.action.authority.AdminAuthorityInterceptor"/>
+		<!-- 配置system admin的登陆检查拦截器 -->
+		<interceptor name="userAuth" class="com.cloversystem.action.authority.UserAuthorityInterceptor"/>
+        <!-- 配置system admin的权限检查拦截器 -->
+		<interceptor name="userPermission" class="com.cloversystem.action.authority.UserPermissionInterceptor"/>
+		<!-- 配置system admin的默认的拦截器栈 -->
+		<interceptor-stack name="adminStack">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="adminAuth"/>
+		</interceptor-stack>
+		<!-- 配置system user默认的拦截器栈 -->
+		<interceptor-stack name="userStack">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="userAuth"/>
+            <interceptor-ref name="userPermission"/>
+		</interceptor-stack>
+	  </interceptors>
+
+        <!-- 定义全局Result映射 -->
+	   <global-results>
+			<!-- 定义sql、root两个异常对应的视图页 -->
+			<result name="business">/WEB-INF/jsp/error.jsp</result>
+			<result name="root">/WEB-INF/jsp/error.jsp</result>
+			<!-- 定义login逻辑视图对应的视图资源 -->
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+            <!-- 定义system error逻辑视图对应的视图资源 -->
+            <!--<result name="systemError">/WEB-INF/jsp/error.jsp</result>-->
+            <!-- 定义admin login逻辑视图对应的视图资源 -->
+            <result name="adminlogin">/WEB-INF/jsp/admin/adminlogin.jsp</result>
+            <!-- 定义user no permission 逻辑视图对应的视图资源 -->
+            <result name="nopermission">/WEB-INF/jsp/permissionError.jsp</result>
+		</global-results>
+
+        <!-- 定义全局异常映射,调试的时候请关闭此配置 现实错误信息 发布时候启动 -->
+        <global-exception-mappings>
+            <!-- 当Action中遇到CrException异常时，
+                   系统将转入name为business的结果中 -->
+            <exception-mapping exception="com.cloversystem.exception.CrException" result="business"/>
+            <!-- 当Action中遇到Exception异常时，
+                   系统将转入name为root的结果中 -->
+            <exception-mapping exception="java.lang.Exception" result="root"/>
+        </global-exception-mappings>
+
+	   <action name="*">
+			<result>/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+      </package>
+
+    <!-- 配置admin包actions -->
+    <package name="admin" extends="default" namespace="/admin">
+        <!--定义这个包使用adminStack拦截器栈-->
+        <default-interceptor-ref name="userStack"/>
+        <!-- 定义处理登录系统的的Action -->
+		<action name="login" class="com.cloversystem.action.admin.LoginAction">
+            <interceptor-ref name="defaultStack"/>
+			<result name="input">/WEB-INF/jsp/admin/adminlogin.jsp</result>
+            <result name="login">/WEB-INF/jsp/admin/main.jsp</result>
+			<result name="error">/WEB-INF/jsp/admin/adminlogin.jsp</result>
+            <result>/WEB-INF/jsp/admin/adminlogin.jsp</result>
+		</action>
+       	<!-- 定义处理登出请求的Action -->
+		<action name="logout" class="com.cloversystem.action.user.LogoutAction">
+            <interceptor-ref name="defaultStack"/>
+			<result>/WEB-INF/jsp/admin/adminlogin.jsp</result>
+		</action>
+    </package>
+
+    <!-- 配置permission包actions -->
+    <package name="permission" extends="default" namespace="/permission">
+        <!--定义这个包使用userStack拦截器栈-->
+        <default-interceptor-ref name="userStack"/>
+
+		<action name="management" class="com.cloversystem.action.permission.ManagementAction">
+			<result>/WEB-INF/jsp/admin/permission/management.jsp</result>
+		</action>
+
+        <action name="addPermission" class="com.cloversystem.action.permission.AddPermissionAction">
+			<result name="failure">/WEB-INF/jsp/admin/permission/management.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/permission/management.jsp</result>
+            <result>/WEB-INF/jsp/admin/permission/management.jsp</result>
+		</action>
+
+        <action name="deletePermission" class="com.cloversystem.action.permission.DeletePermissionAction">
+            <result type="json"/>
+		</action>
+    </package>
+
+    <!-- 配置menu包actions -->
+    <package name="menu" extends="default" namespace="/menu">
+        <!--定义这个包使用userStack拦截器栈-->
+        <default-interceptor-ref name="userStack"/>
+
+		<action name="management" class="com.cloversystem.action.menu.ManagementAction">
+			<result>/WEB-INF/jsp/admin/menu/management.jsp</result>
+		</action>
+
+        <action name="addMenu" class="com.cloversystem.action.menu.AddMenuAction">
+			<result name="failure">/WEB-INF/jsp/admin/menu/management.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/menu/management.jsp</result>
+            <result>/WEB-INF/jsp/admin/menu/management.jsp</result>
+		</action>
+
+        <action name="deleteMenu" class="com.cloversystem.action.menu.DeleteMenuAction">
+            <result type="json"/>
+		</action>
+
+        <action name="updateMenu" class="com.cloversystem.action.menu.UpdateMenuAction">
+            <result type="json"/>
+		</action>
+    </package>
+
+    <!-- 配置role包actions -->
+    <package name="role" extends="default" namespace="/role">
+        <!--定义这个包使用userStack拦截器栈-->
+        <default-interceptor-ref name="userStack"/>
+
+		<action name="management" class="com.cloversystem.action.role.ManagementAction">
+			<result>/WEB-INF/jsp/admin/role/management.jsp</result>
+		</action>
+
+        <action name="addRole" class="com.cloversystem.action.role.AddRoleAction">
+			<result name="failure">/WEB-INF/jsp/admin/role/management.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/role/management.jsp</result>
+            <result>/WEB-INF/jsp/admin/role/management.jsp</result>
+		</action>
+
+        <action name="deleteRole" class="com.cloversystem.action.role.DeleteRoleAction">
+		</action>
+
+        <action name="editRolePermission" class="com.cloversystem.action.role.EditRolePermissionAction">
+			<result name="failure">/WEB-INF/jsp/admin/role/editRolePermission.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/role/editRolePermission.jsp</result>
+            <result>/WEB-INF/jsp/admin/role/editRolePermission.jsp</result>
+		</action>
+
+        <action name="editRoleMenu" class="com.cloversystem.action.role.EditRoleMenuAction">
+			<result name="failure">/WEB-INF/jsp/admin/role/editRoleMenu.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/role/editRoleMenu.jsp</result>
+            <result>/WEB-INF/jsp/admin/role/editRoleMenu.jsp</result>
+		</action>
+    </package>
+    
+    <!-- 配置user包actions -->
+    <package name="user" extends="default" namespace="/user">
+        <default-interceptor-ref name="userStack"/>
+        <!-- 定义处理登录系统的的Action -->
+		<action name="login" class="com.cloversystem.action.user.LoginAction">
+            <interceptor-ref name="defaultStack"/>
+			<result name="input">/WEB-INF/jsp/login.jsp</result>
+            <result name="login">/WEB-INF/jsp/main.jsp</result>
+			<result name="error">/WEB-INF/jsp/login.jsp</result>
+            <result>/WEB-INF/jsp/login.jsp</result>
+		</action>
+       	<!-- 定义处理登出请求的Action -->
+		<action name="logout" class="com.cloversystem.action.user.LogoutAction">
+            <interceptor-ref name="defaultStack"/>
+			<result>/WEB-INF/jsp/login.jsp</result>
+		</action>
+
+		<action name="myPanel" class="com.cloversystem.action.user.MyPanelAction">
+            <interceptor-ref name="defaultStack"/>
+			<result>/WEB-INF/jsp/user/account/myPanel.jsp</result>
+		</action>
+
+		<action name="updatePassword" class="com.cloversystem.action.user.UpdatePasswordAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="failure">/WEB-INF/jsp/user/account/myPanel.jsp</result>
+			<result name="error">/WEB-INF/jsp/user/account/myPanel.jsp</result>
+            <result>/WEB-INF/jsp/user/account/myPanel.jsp</result>
+		</action>
+
+        <action name="addOurCompanyNewUser" class="com.cloversystem.action.user.AddOurCompanyNewUserAction">
+			<result name="failure">/WEB-INF/jsp/admin/user/addSingleSystemUser.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+            <result>/WEB-INF/jsp/admin/user/addSingleSystemUser.jsp</result>
+		</action>
+
+        <action name="batchAddOurCompanyUsers" class="com.cloversystem.action.user.BatchAddOurCompanyUsersAction">
+			<result name="failure">/WEB-INF/jsp/admin/user/batchAddUsers.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+            <result>/WEB-INF/jsp/admin/user/batchAddUsers.jsp</result>
+		</action>
+
+        <action name="addCompanyNewUser" class="com.cloversystem.action.user.AddCompanyNewUserAction">
+			<result name="failure">/WEB-INF/jsp/admin/user/addSingleSystemUser.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+            <result>/WEB-INF/jsp/admin/user/addSingleSystemUser.jsp</result>
+		</action>
+
+        <action name="batchAddCompanyUsers" class="com.cloversystem.action.user.BatchAddCompanyUsersAction">
+			<result name="failure">/WEB-INF/jsp/admin/user/batchAddUsers.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+            <result>/WEB-INF/jsp/admin/user/batchAddUsers.jsp</result>
+		</action>
+
+        <action name="userAddRole" class="com.cloversystem.action.user.UserAddRoleAction">
+            <result type="json"/>
+		</action>
+
+        <action name="userRemoveRole" class="com.cloversystem.action.user.UserRemoveRoleAction">
+            <result type="json"/>
+		</action>
+
+        <action name="deleteUser" class="com.cloversystem.action.user.DeleteUserAction">
+            <result type="json"/>
+		</action>
+
+        <action name="updateUser" class="com.cloversystem.action.user.UpdateUserAction">
+            <result type="json"/>
+		</action>
+
+        <action name="lockUser" class="com.cloversystem.action.user.LockUserAction">
+            <result type="json"/>
+		</action>
+
+        <action name="resetUserPassword" class="com.cloversystem.action.user.ResetUserPasswordAction">
+            <result type="json"/>
+		</action>
+
+        <action name="checkUserExisting" class="com.cloversystem.action.user.CheckUserExistingAction">
+             <interceptor-ref name="defaultStack"/>
+            <result type="json"/>
+        </action>
+
+    </package>
+
+   <!-- 配置company包actions -->
+    <package name="company" extends="default" namespace="/company">
+        <default-interceptor-ref name="userStack"/>
+
+        <action name="management" class="com.cloversystem.action.company.ManagementAction">
+			<result>/WEB-INF/jsp/admin/company/management.jsp</result>
+		</action>
+
+         <action name="addCompany" class="com.cloversystem.action.company.AddCompanyAction">
+			<result name="failure">/WEB-INF/jsp/admin/company/addCompany.jsp</result>
+			<result name="saveSuccess">/WEB-INF/jsp/admin/company/management.jsp</result>
+            <result>/WEB-INF/jsp/admin/company/addCompany.jsp</result>
+		</action>
+
+        <action name="deleteCompany" class="com.cloversystem.action.company.DeleteCompanyAction">
+            <result type="json"/>
+		</action>
+
+        <action name="updateCompany" class="com.cloversystem.action.company.UpdateCompanyAction">
+            <result type="json"/>
+		</action>
+
+        <action name="lockCompany" class="com.cloversystem.action.company.LockCompanyAction">
+            <result type="json"/>
+		</action>
+
+         <action name="manageCompanyUsers" class="com.cloversystem.action.company.ManageCompanyUsersAction">
+			<result>/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+		</action>
+
+        <action name="manageOurCompanyUsers" class="com.cloversystem.action.company.ManageOurCompanyUsersAction">
+			<result>/WEB-INF/jsp/admin/company/manageCompanyUsers.jsp</result>
+		</action>
+
+         <action name="changeOurCompanyInfo" class="com.cloversystem.action.company.ChangeOurCompanyInfoAction">
+             <result>/WEB-INF/jsp/client/company/changeOurCompanyInfo.jsp</result>
+		</action>
+    </package>
+
+    <!-- 配置store包actions -->
+    <package name="store" extends="default" namespace="/store">
+        <default-interceptor-ref name="userStack"/>
+         <action name="manageOurCompanyStores" class="com.cloversystem.action.store.ManageOurCompanyStoresAction">
+			<result>/WEB-INF/jsp/client/store/manageCompanyStores.jsp</result>
+		</action>
+
+        <action name="addStore" class="com.cloversystem.action.store.AddStoreAction">
+            <result name="failure">/WEB-INF/jsp/client/store/addStore.jsp</result>
+            <result name="saveSuccess">/WEB-INF/jsp/client/store/manageCompanyStores.jsp</result>
+            <result>/WEB-INF/jsp/client/store/addStore.jsp</result>
+        </action>
+
+        <action name="deleteStore" class="com.cloversystem.action.store.DeleteStoreAction">
+            <result type="json"/>
+		</action>
+
+        <action name="updateStore" class="com.cloversystem.action.store.UpdateStoreAction">
+            <result type="json"/>
+		</action>
+    </package>
+
+    <!-- 配置report包actions -->
+    <package name="report" extends="default" namespace="/report">
+        <default-interceptor-ref name="userStack"/>
+        <!-- 销售员工发送每天的报告 -->
+		<action name="addDailySaleReport" class="com.cloversystem.action.report.AddDailySaleReportAction">
+			<result>/WEB-INF/jsp/analysis/report/addDailySaleReport.jsp</result>
+		</action>
+
+        <action name="submitTodaySaleReport" class="com.cloversystem.action.report.SubmitTodaySaleReportAction">
+            <result type="json"/>
+		</action>
+
+		<action name="submitSuccess" class="com.cloversystem.action.report.SubmitSuccessAction">
+            <interceptor-ref name="defaultStack"/>
+			<result>/WEB-INF/jsp/analysis/report/mySentDailyReport.jsp</result>
+		</action>
+
+		<action name="viewYesterdayReport" class="com.cloversystem.action.report.ViewYesterdayReportAction">
+			<result>/WEB-INF/jsp/analysis/report/viewYesterdayReport.jsp</result>
+		</action>
+
+        <action name="viewSomedayReport" class="com.cloversystem.action.report.ViewSomedayReportAction">
+			<result>/WEB-INF/jsp/analysis/report/viewSomedayReport.jsp</result>
+		</action>
+
+        <action name="viewOurStoresReport" class="com.cloversystem.action.report.viewOurStoresReportAction">
+			<result>/WEB-INF/jsp/analysis/report/viewOurStoresReport.jsp</result>
+		</action>
+
+        <action name="manageOurCompanyReport" class="com.cloversystem.action.report.ManageOurCompanyReportAction">
+			<result>/WEB-INF/jsp/admin/report/manageCompanyReport.jsp</result>
+		</action>
+
+        <action name="deleteDailyReport" class="com.cloversystem.action.report.DeleteDailyReportAction">
+            <result type="json"/>
+		</action>
+
+		<action name="insertDailyReport" class="com.cloversystem.action.report.InsertDailyReportAction">
+			<result>/WEB-INF/jsp/analysis/report/insertSaleReport.jsp</result>
+		</action>
+    </package>
+
+    <package name="jsonData" extends="default" namespace="/jsonData">
+        <!--定义这个jsonData包默认使用 默认拦截器 而不是权限拦截器-->
+        <default-interceptor-ref name="defaultStack"/>
+
+        <action name="getCompanyJsonData" class="com.cloversystem.action.jsonData.GetCompanyJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+
+        <action name="getUserJsonData" class="com.cloversystem.action.jsonData.GetUserJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+
+        <action name="getStoreJsonData" class="com.cloversystem.action.jsonData.GetStoreJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+
+        <action name="getDailyReportJsonData" class="com.cloversystem.action.jsonData.GetDailyReportJsonDataAction">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+
+        <action name="getStoresWithReportJsonData" class="com.cloversystem.action.jsonData.GetStoresWithReportJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+
+        <action name="getSalesReportJsonData" class="com.cloversystem.action.jsonData.GetSalesReportJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+
+        <action name="getPeriodReportJsonData" class="com.cloversystem.action.jsonData.GetPeriodReportJsonDataAction">
+            <result type="json">
+              <param name="root">result</param>
+            </result>
+		</action>
+    </package>
+</struts>

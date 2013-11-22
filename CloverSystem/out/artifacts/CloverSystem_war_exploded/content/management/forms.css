@@ -1,0 +1,96 @@
+﻿/*@group buttons */
+.button
+{
+    font: 12px/26px Georgia;
+    height: 28px;
+    border: 0px;
+    padding: 0;
+    cursor: pointer;
+    color: #2a2a2a;
+    text-transform: uppercase;    
+}
+.button span
+{
+    display: block;
+    height: 26px;
+    line-height: 25px;
+    padding: 0 5px 0 12px;
+    margin: 0 3px 0 0;    
+}
+.button span img
+{
+    float: left;
+    display: inline;
+    margin: 4px 6px 0 -2px;
+}
+.button:hover
+{
+    background-position: right bottom;
+}
+.button:hover span
+{
+    background-position: left bottom;
+}
+
+/* @group link button */
+a.button
+{
+    float: left;
+    display: inline;
+    height: 26px;
+    background-position: right 0px;
+}
+a.button span
+{
+    float: left;
+    display: inline;
+    margin-right: 7px;
+}
+a.button:hover
+{
+    text-decoration: none;
+}
+/* @end */
+
+.buttons
+{
+    float: left;
+    display: inline;
+    margin: 0 0 10px 0;
+}
+.buttons .button
+{
+    float: left;
+    display: inline;
+    margin: 0 8px 0 0;
+}
+.buttons a.button
+{
+    margin-top: 2px;
+}
+
+.buttons-right
+{
+    float: right;
+    display: inline;
+}
+
+.form li.buttons
+{
+    clear: both;
+    float: left;
+    display: inline;
+    padding: 5px 0 10px 0;
+    margin: 0 0 0 178px;
+}
+td.buttons
+{
+    float: none;
+    display: table-cell;
+}
+/* @end */
+
+.form li.hidden
+{
+    display: none;
+}

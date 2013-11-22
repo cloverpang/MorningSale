@@ -1,0 +1,198 @@
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(/content/images/blank.gif?native_path=bg.gif);
+	background-repeat: no-repeat;
+	background-position: 0% 90%;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(/content/Images/icons_arc.gif);
+    background-position: -0px -0px;
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image:url(/content/Images/icons_arc.gif);
+    background-position: -0px -0px;	
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+#tblheaderfundreturn thead tr .header {
+    background-image: url(/content/images/blank.gif?native_path=Images%2ficn_sort_arrow.gif);
+    background-position: 98% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+#tblheaderfundreturn thead tr .headerSortUp {
+    background-image: url(/content/images/blank.gif?native_path=Images%2ficn_sort_arrow_up.gif);
+    background-position: 98% 50%;
+}
+#tblheaderfundreturn thead tr .headerSortDown {
+    background-image:url(/content/images/blank.gif?native_path=Images%2ficn_sort_arrow_down.gif);
+    background-position: 98% 50%;	
+}
+
+
+#tblCompanySearchResult thead tr .header {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow.gif");
+	background-repeat: no-repeat;
+	background-position: 0% 90% ;
+	cursor: pointer;
+    /*padding-left:10px;*/
+}
+#tblCompanySearchResult thead tr .headerSortUp {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_up.gif");
+}
+#tblCompanySearchResult thead tr .headerSortDown {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_down.gif");
+}
+#tblCompanySearchResult tbody tr.even td {
+	background-color:#ededed;
+}
+#tblCompanySearchResult tbody tr.odd td {
+	background-color: #FFFFFF;
+}
+
+table.DataTable thead tr .header {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow.gif");
+	background-repeat: no-repeat;
+	background-position: 0% 90% ;
+	cursor: pointer;
+    /*padding-left:10px;*/
+}
+table.DataTable thead tr .headerSortUp {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_up.gif");
+}
+table.DataTable thead tr .headerSortDown {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_down.gif");
+}
+table.DataTable tbody tr.even td{
+	background-color:#ededed;
+}
+table.DataTable tbody tr.odd td {
+	background-color: #FFFFFF;
+}
+
+table.DataTableNoTopBorderSorting thead tr .header {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow.gif");
+	background-repeat: no-repeat;
+	background-position: 0% 90% ;
+	cursor: pointer;
+    /*padding-left:10px;*/
+}
+
+table.DataTableNoTopBorderSorting {
+	font-family: Verdana, Arial, Helvetica, san-serif;	
+	font-weight:normal;
+	font-size:11px;	
+	color:#333333;	
+	line-height:12px;
+	vertical-align:top;
+	border-style:solid;
+	border-color:#e6e6e6; 
+    background-color:#FFFFFF;
+	border-width:0px 0px 1px 0px;
+	padding:0px 0px 0px 0px;
+	width:760px;
+	
+}
+
+table.DataTableNoTopBorderSorting tr {height:19px; }
+table.DataTableNoTopBorderSorting img {border:none;vertical-align:bottom;}
+
+table.DataTableNoTopBorderSorting a {
+	font-family: Verdana, Arial, Helvetica, san-serif;	
+	font-weight:normal;
+	font-size:11px;	
+	color:#2f77be;
+	line-height:16px;
+	text-decoration:none;
+}
+table.DataTableNoTopBorderSorting a:hover {text-decoration:underline;}
+
+table.DataTableNoTopBorderSorting th {
+	font-family: Verdana, Arial, Helvetica, san-serif;	
+	font-weight:bold;
+	font-size:11px;	
+	color:#333333;
+	line-height:16px;
+	vertical-align:top;
+	padding:10px 0px 19px 0px;
+}
+
+table.DataTableNoTopBorderSorting th.ColumnHeader {
+	font-family: Verdana, Arial, Helvetica, san-serif;	
+	height:44px;
+	font-weight:normal;
+	font-size:10px;	
+	color:#666666;    
+	line-height:12px;
+	vertical-align:top;
+	padding:3px 0px 5px 0px;
+	border-style:solid;
+	border-color:#e6e6e6;
+	border-width:1px 0px 1px 0px;
+}
+
+table.DataTableNoTopBorderSorting tr td.rowSpaceTop20px {
+	font-family: Verdana, Arial, Helvetica, san-serif;	
+	font-weight:bold;
+	font-size:11px;	
+	color:#333333;
+	line-height:16px;
+	vertical-align:top;
+	padding:15px 0px 20px 0px;
+}
+
+table.DataTableNoTopBorderSorting .ColumnHeader {
+	/*height:44px;*/
+	line-height:12px;
+	border-style:solid;
+	border-color:#e6e6e6;
+	border-width:1px 0px 1px 0px;
+	padding:3px 0px 0px 0px;
+	vertical-align:top;
+}
+
+table.DataTableNoTopBorderSorting .ColumnHeader  img {
+	/*height:44px;*/
+	padding:0px 0px 0px 0px;
+	vertical-align:top;
+	text-align:top;
+}
+
+table.DataTableNoTopBorderSorting thead tr .headerSortUp {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_up.gif");
+}
+table.DataTableNoTopBorderSorting thead tr .headerSortDown {
+	background-image: url("/content/images/blank.gif?native_path=..%2f..%2fimages%2ficn_sort_arrow_down.gif");
+}
+table.DataTableNoTopBorderSorting tbody tr.even td{
+	background-color:#ededed;
+}
+table.DataTableNoTopBorderSorting tbody tr.odd td {
+	background-color: #FFFFFF;
+}

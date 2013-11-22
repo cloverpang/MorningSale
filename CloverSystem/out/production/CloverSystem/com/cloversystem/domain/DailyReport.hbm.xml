@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cloversystem.domain">
+    <class name="DailyReport" table="DailyReport">
+        <id name="reportId" column="reportId">
+        </id>
+        <property name="companyId" column="companyId" not-null="true" />
+        <property name="storeId" column="storeId" not-null="true" length="50"/>
+        <property name="storeName" column="storeName" length="50"/>
+        <property name="reportContent" column="reportContent" length="500"/>
+        <property name="reportCompareStores" column="reportCompareStores" length="50"/>
+        <property name="reportKeyValues" column="reportKeyValues" length="200"/>
+        <property name="reportAppendDetail" column="reportAppendDetail" length="500"/>
+        <property name="ourSaleValue" column="ourSaleValue"/>
+        <property name="maxSaleValue" column="maxSaleValue"/>
+        <property name="productionCategorys" column="productionCategorys" length="50"/>
+        <property name="productionSaleCount" column="productionSaleCount" length="50"/>
+        <property name="productionSaleValue" column="productionSaleValue" length="50"/>
+        <property name="sendTime" column="sendTime" type="java.util.Date"/>
+        <property name="reportDay" column="reportDay" not-null="true" />
+        <property name="reporter" column="reporter" not-null="true" />
+    </class>
+</hibernate-mapping>

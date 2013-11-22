@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cloversystem.domain">
+    <class name="Store" table="Store">
+        <id name="storeId" column="storeId">
+        </id>
+        <property name="storeName" column="storeName" />
+		<!-- 映射和Company的关联关系,对于company实施了自动加载 -->
+		<many-to-one name="company" column="companyId" class="Company" not-null="true" lazy="false"/>
+        <property name="storeManager" column="storeManager" not-null="true"/>
+        <property name="compareStores" column="compareStores" />
+        <property name="createTime" column="createTime" type="java.util.Date"/>
+        <!-- 映射和DailyReport之间的关联关系 -->
+		<set name="storeReports" inverse="true" lazy="true" cascade="all-delete-orphan">
+			<key column="storeId" />
+			<one-to-many class="DailyReport" />
+		</set>
+    </class>
+</hibernate-mapping>

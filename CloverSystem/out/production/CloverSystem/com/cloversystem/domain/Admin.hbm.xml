@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cloversystem.domain">
+    <class name="Admin" table="Admin">
+        <id name="adminId" column="adminId">
+            <generator class="identity"/>
+        </id>
+        <property name="adminName" column="adminName" />
+        <property name="password" column="password" />
+        <property name="email" column="email" />
+    </class>
+</hibernate-mapping>

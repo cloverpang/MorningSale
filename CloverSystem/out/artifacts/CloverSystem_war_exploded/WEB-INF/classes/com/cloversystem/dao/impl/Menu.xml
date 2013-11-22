@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<menuRoot>
+  <tab name="StoreTab" title="门店销售" roles="Admin,销售总监,业务员,店员">
+      <menuLink roles="Admin,销售总监,业务员,店员">
+        <menuLinkTitle>发日销售</menuLinkTitle>
+        <menuLinkUrl>/report/addDailySaleReport.action</menuLinkUrl>
+        <extendUrls>/report/addDailySaleReport.action</extendUrls>
+      </menuLink>
+  </tab>
+  <tab name="ReportTab" title="销售分析" roles="Admin,销售总监,业务员">
+      <menuLink roles="Admin,销售总监,业务员">
+        <menuLinkTitle>当日分析</menuLinkTitle>
+        <menuLinkUrl>/report/viewYesterdayReport.action</menuLinkUrl>
+        <extendUrls>/report/viewYesterdayReport.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监,业务员">
+        <menuLinkTitle>阶段分析</menuLinkTitle>
+        <menuLinkUrl>/report/viewSomedayReport.action</menuLinkUrl>
+        <extendUrls>/report/viewSomedayReport.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监,业务员">
+        <menuLinkTitle>销售检索</menuLinkTitle>
+        <menuLinkUrl>/report/viewOurStoresReport.action</menuLinkUrl>
+        <extendUrls>/report/viewOurStoresReport.action</extendUrls>
+      </menuLink>
+  </tab>
+  <tab name="BusinessTab" title="业务管理" roles="Admin,销售总监">
+      <menuLink roles="Admin,销售总监">
+        <menuLinkTitle>人员管理</menuLinkTitle>
+        <menuLinkUrl>/company/manageOurCompanyUsers.action</menuLinkUrl>
+        <extendUrls>/company/manageOurCompanyUsers.action,/company/addOurCompanyUser.action,/user/addOurCompanyNewUser.action,/user/batchAddOurCompanyUsers.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监">
+        <menuLinkTitle>门店管理</menuLinkTitle>
+        <menuLinkUrl>/store/manageOurCompanyStores.action</menuLinkUrl>
+        <extendUrls>/store/manageOurCompanyStores.action,/store/addStore.action,/store/editStoreReportTemplate.action
+        </extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监">
+        <menuLinkTitle>公司设置</menuLinkTitle>
+        <menuLinkUrl>/company/changeOurCompanyInfo.action</menuLinkUrl>
+        <extendUrls>/company/changeOurCompanyInfo.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监">
+        <menuLinkTitle>销售数据管理</menuLinkTitle>
+        <menuLinkUrl>/report/manageOurCompanyReport.action</menuLinkUrl>
+        <extendUrls>/report/manageOurCompanyReport.action,/report/deleteDailyReport.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin,销售总监">
+        <menuLinkTitle>插入报告</menuLinkTitle>
+        <menuLinkUrl>/report/insertDailyReport.action</menuLinkUrl>
+        <extendUrls>/report/insertDailyReport.action</extendUrls>
+      </menuLink>
+  </tab>
+  <tab name="ClientTab" title="客户管理" roles="Admin">
+      <menuLink roles="Admin">
+        <menuLinkTitle>公司管理</menuLinkTitle>
+        <menuLinkUrl>/company/management.action</menuLinkUrl>
+        <extendUrls>/company/management.action,/company/addCompany.action,/company/manageCompanyUsers.action,/user/batchAddCompanyUsers.action,/user/addCompanyNewUser.action</extendUrls>
+      </menuLink>
+  </tab>
+  <tab name="SystemTab" title="系统设置" roles="Admin">
+      <menuLink roles="Admin">
+        <menuLinkTitle>角色管理</menuLinkTitle>
+        <menuLinkUrl>/role/management.action</menuLinkUrl>
+        <extendUrls>/role/management.action,/role/addRole.action,/role/editRolePermission.action,/role/editRoleMenu.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin">
+        <menuLinkTitle>权限管理</menuLinkTitle>
+        <menuLinkUrl>/permission/management.action</menuLinkUrl>
+        <extendUrls>/permission/management.action,/permission/addPermission.action</extendUrls>
+      </menuLink>
+      <menuLink roles="Admin">
+        <menuLinkTitle>系统菜单设置</menuLinkTitle>
+        <menuLinkUrl>/menu/management.action</menuLinkUrl>
+        <extendUrls>/menu/management.action,/menu/addMenu.action</extendUrls>
+      </menuLink>
+  </tab>
+</menuRoot>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+    default-autowire="byName">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+     <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
+     <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/SaleAnalysis"/>
+     <property name="username" value="test1" />
+     <property name="password" value="test1" />
+   </bean>
+
+    <!-- 定义Hibernate的SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 依赖注入数据源，注入正是上面定义的dataSource -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- mappingResouces属性用来列出全部映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<!-- 以下用来列出Hibernate映射文件 -->
+				<value>com/cloversystem/domain/Admin.hbm.xml</value>
+                <value>com/cloversystem/domain/SystemUser.hbm.xml</value>
+                <value>com/cloversystem/domain/UserRole.hbm.xml</value>
+                <value>com/cloversystem/domain/Company.hbm.xml</value>
+                <value>com/cloversystem/domain/Store.hbm.xml</value>
+                <value>com/cloversystem/domain/DailyReport.hbm.xml</value>
+			</list>
+		</property>
+		<!-- 定义Hibernate的SessionFactory的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 指定数据库方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<!-- 显示Hibernate持久化操作所生成的SQL -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- 将SQL脚本进行格式化后再输出 -->
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+    <!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 -->
+<!-- 该类实现PlatformTransactionManager接口，是针对Hibernate的特定实现-->
+     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	   <!-- 配置HibernateTransactionManager时需要依注入SessionFactory的引用 -->
+	   <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+	<!-- 配置DAO组件的模板 -->
+	<bean id="daoTemplate" abstract="true" lazy-init="true">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+    <!-- 配置DAO 数据库 相关表组件的模板 -->
+	<bean id="adminDao" class="com.cloversystem.dao.impl.AdminDaoHibernate" parent="daoTemplate"/>
+    <bean id="systemUserDao" class="com.cloversystem.dao.impl.SystemUserDaoHibernate" parent="daoTemplate"/>
+    <bean id="userRoleDao" class="com.cloversystem.dao.impl.UserRoleDaoHibernate" parent="daoTemplate"/>
+    <bean id="companyDao" class="com.cloversystem.dao.impl.CompanyDaoHibernate" parent="daoTemplate"/>
+    <bean id="storeDao" class="com.cloversystem.dao.impl.StoreDaoHibernate" parent="daoTemplate"/>
+    <bean id="dailyReportDao" class="com.cloversystem.dao.impl.DailyReportDaoHibernate" parent="daoTemplate"/>
+
+    <!-- 配置DAO 其他数据组件的模板 -->
+    <bean id="roleDao" class="com.cloversystem.dao.impl.RoleDaoImpl">
+        <property name="xmlOperationHelper" ref="normalXmlHelper"/>
+        <property name="xmlRealPath" value="com/cloversystem/dao/impl/Role.xml"/>
+    </bean>
+    <bean id="permissionDao" class="com.cloversystem.dao.impl.PermissionDaoImpl">
+        <property name="xmlOperationHelper" ref="normalXmlHelper"/>
+        <property name="xmlRealPath" value="com/cloversystem/dao/impl/Permission.xml"/>
+    </bean>
+    <bean id="menuDao" class="com.cloversystem.dao.impl.MenuDaoImpl">
+        <property name="xmlOperationHelper" ref="normalXmlHelper"/>
+        <property name="xmlRealPath" value="com/cloversystem/dao/impl/Menu.xml"/>
+    </bean>
+
+    <!-- 配置 第一个 xml helper 操作类 -->
+    <bean id="normalXmlHelper" class="com.cloversystem.util.impl.NormalXmlHelper"/>
+
+    <!-- 定义数据Model组件 -->
+    <bean id="userInfoModel" class="com.cloversystem.model.UserInfoModel"/>
+    <bean id="permissionsModel" class="com.cloversystem.model.PermissionsModel"/>
+
+    <!-- 定义业务逻辑组件模板 -->
+    <bean id="baseService" abstract="true" lazy-init="true">
+		<!-- 为业务逻辑组件注入DAO组件 -->
+        <property name="adminDao" ref="adminDao"/>
+        <property name="systemUserDao" ref="systemUserDao"/>
+        <property name="userRoleDao" ref="userRoleDao"/>
+        <property name="companyDao" ref="companyDao"/>
+        <property name="storeDao" ref="storeDao"/>
+        <property name="dailyReportDao" ref="dailyReportDao"/>
+        <property name="roleDao" ref="roleDao"/>
+        <property name="permissionDao" ref="permissionDao"/>
+        <property name="menuDao" ref="menuDao"/>
+        <property name="userInfoModel" ref="userInfoModel"/>
+        <property name="permissionsModel" ref="permissionsModel"/>
+	</bean>
+	<!-- 定义业务逻辑组件，继承业务逻辑组件的模板 -->
+    <bean id="commonUserService"
+		class="com.cloversystem.service.impl.CommonUserServiceImpl"
+		parent="baseService"/>
+    <bean id="storeSalePersonService"
+		class="com.cloversystem.service.impl.StoreSalePersonServiceImpl"
+		parent="baseService"/>
+    <bean id="salesManagerService"
+		class="com.cloversystem.service.impl.SalesManagerServiceImpl"
+		parent="baseService"/>
+    <bean id="adminService"
+		class="com.cloversystem.service.impl.AdminServiceImpl"
+		parent="baseService"/>
+    <bean id="jsonDataService"
+		class="com.cloversystem.service.impl.JsonDataServiceImpl"
+		parent="baseService"/>
+</beans>

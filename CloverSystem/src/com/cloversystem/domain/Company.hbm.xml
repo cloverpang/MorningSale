@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cloversystem.domain">
+    <class name="Company" table="Company">
+        <id	name="companyId" type="integer" column="companyId">
+			<!-- 指定使用identity主键生成策略 -->
+			<generator class="identity"/>
+		</id>
+        <property name="companyName" column="companyName" type="string" not-null="true" length="50"/>
+        <property name="companyCode" column="companyCode" type="string" not-null="true" length="50"/>
+        <property name="simpleName" column="simpleName" type="string"  length="50"/>
+        <property name="productionCategoys" column="productionCategoys" type="string" length="50"/>
+        <property name="logoPath" column="logoPath" type="string" length="50"/>
+        <property name="isLock" column="isLock" type="boolean" not-null="true" />
+        <!-- 映射和User之间的关联关系,级联删除策略 -->
+		<set name="users" inverse="true" lazy="true" cascade="all-delete-orphan">
+			<key column="companyId" />
+			<one-to-many class="SystemUser"/>
+		</set>
+        <!-- 映射和Store之间的关联关系,级联删除策略 -->
+		<set name="stores" inverse="true" lazy="true" cascade="all-delete-orphan">
+			<key column="companyId" />
+			<one-to-many class="Store"/>
+		</set>
+    </class>
+</hibernate-mapping>
